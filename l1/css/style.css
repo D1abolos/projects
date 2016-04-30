@@ -1,8 +1,6 @@
-sheader {
-	text-align:center;width: 440px; margin: 40%;font-size:156px
-}
+sheader {	text-align:center;margin: 25%;font-size:100px}
 ssection{ background: lime;font-size:28px}
 snav{background: yellow; font-size:26px}
-sarticle{; font-size:24px}
-saside{background: #f0f0f0;width: 200px;float: right;font-size:22px}
+sarticle{font-size:24px}
+saside{background: #f0f0f0;width: 200px;float: left;font-size:22px}
 sfooter {position: fixed; left: 10px; bottom: 10px;font-size:20px}
