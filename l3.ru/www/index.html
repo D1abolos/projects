@@ -1,0 +1,49 @@
+<?php
+include("php/sessionstart.php");
+?>
+<html>
+<head>	
+		<title> my site </title>		
+		<link rel="stylesheet" href="css/style.css" media="all">		
+</head>
+<body>	
+    <header>
+    <sheader>Header example</sheader>
+  </header>
+  <section>
+   <ssection>Section example. No headline.</ssection>
+  </section>
+  <nav><a href="1.html"target="_blank"><snav>navigation link</snav></a>
+  </nav>
+   <aside>
+   <saside>aside text</saside><br>
+   <br><a href="javascript:alert('Hello World!');"><saside>Hello</saside></a>
+  </aside>
+  <article>
+    <sarticle>Article example</sarticle>
+	<p>content</p>
+  </article>  
+  </section>
+  <form id="input" action="php/send.php" method="get">
+	<br>Deistvie 
+	<select name="opcode" >
+		<option value="1">avtorizaciya</option>
+		<option value="2">registraciya</option>
+	</select><br>
+	<br>login<input id="login" type="text" value=Max name="login"/><br>
+	<br>password<input id="password" type="password" name="password" pattern="(?=^.{8,}$)(?=.*[A-Z])(?=.*[a-z]).*" placeholder="********" required><br>
+	<br>email<input id="email" name="email" pattern="\S+@[A-Za-z]+.[a-z]+" placeholder="name@mail.ru" required> <br>
+	<br><input type="checkbox" name="save" value="savecheck"> zapomnit'
+	<br><input type="submit" name="submit" value="OK" /><br>
+	<p>
+		<?php 
+		echo $_SESSION['message'];
+		$_SESSION['message'] = ''; 
+		?>
+	</p>
+	</form>
+   <footer>
+    <a href="#top"><sfooter>Go to top</sfooter></a>
+  </footer>  
+</body>
+</html>
