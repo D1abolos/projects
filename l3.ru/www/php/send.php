@@ -3,14 +3,17 @@ header("Content-Type: text/html; charset=utf-8");
 session_start();
 if ($_SESSION['send'] == $_SERVER['REMOTE_ADDR'])  
 {
-$login = $password = $email = '';
+$login = $password = $email = $temp = '';
 $_SESSION['message'] = ''; 
 $flag = true;
 if (!empty($_GET["login"])) 
 	$login = $_GET["login"];
 else {$flag = false ; $_SESSION['message'] = 'Неверно указан login!'; }
-if (!empty($_GET["password"])) 
-	$password = $_GET["password"];
+if (!empty($_GET["password"]))
+	{ 	
+	$temp = $_GET["password"];
+	$password = crypt($temp,'$1$qwe$');
+	}
 else {$flag = false ; $_SESSION['message'] = 'Неверно указан password!'; }
 if (filter_var($_GET["email"], FILTER_VALIDATE_EMAIL) && !empty($_GET["email"])) 
     $email = $_GET["email"]; 
