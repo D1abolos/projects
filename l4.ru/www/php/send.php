@@ -3,7 +3,7 @@ header("Content-Type: text/html; charset=utf-8");
 session_start();
 if ($_SESSION['send'] == $_SERVER['REMOTE_ADDR'])  
 {
-$login = $password = $email = $temp = '';
+$login = $hpassword = $email = $temp = '';
 $_SESSION['message'] = ''; 
 $flag = true;
 if (!empty($_GET["login"])) {
@@ -14,7 +14,7 @@ if (!empty($_GET["password"]))
 	{ 	
 	$temp = htmlspecialchars($_GET["password"]);
 	$temp = strip_tags($temp);
-	$password = crypt($temp,'$1$qwe$');
+	$hpassword = crypt($temp,'$1$qwe$');
 	}
 else {$flag = false ; $_SESSION['message'] = 'Неверно указан password!'; }
 if (filter_var($_GET["email"], FILTER_VALIDATE_EMAIL) && !empty($_GET["email"])) {	
@@ -28,11 +28,15 @@ if (mysqli_connect_errno()) {
 }
 if($flag == true)
 {
-  if (mysqli_query($mysqli, "INSERT INTO users (login, password, email) VALUES ('".$login."', '".$password."', '".$email."')") === TRUE) {
-  $_SESSION['message'] = 'Done'; }
-  else {
- $_SESSION['message'] = 'error'; 
-  }
+	$stmt = mysqli_prepare($mysqli, "INSERT INTO users (login, password, email) VALUES (?, ?, ?)");
+	mysqli_stmt_bind_param($stmt, 'sss', $login, $hpassword, $email);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+ // if (mysqli_query($mysqli, "INSERT INTO users (login, password, email) VALUES ('".$login."', '".$password."', '".$email."')") === TRUE) {
+//  $_SESSION['message'] = 'Done'; }
+ // else {
+// $_SESSION['message'] = 'error'; 
+ // }
  mysqli_close($mysqli);
 }
 }
