@@ -30,13 +30,12 @@ if($flag == true)
 {
 	$stmt = mysqli_prepare($mysqli, "INSERT INTO users (login, password, email) VALUES (?, ?, ?)");
 	mysqli_stmt_bind_param($stmt, 'sss', $login, $hpassword, $email);
-	mysqli_stmt_execute($stmt);
+	if (mysqli_stmt_execute($stmt) === TRUE) {
+    $_SESSION['message'] = 'Done'; }
+    else {
+    $_SESSION['message'] = 'error'; 
+	}
 	mysqli_stmt_close($stmt);
- // if (mysqli_query($mysqli, "INSERT INTO users (login, password, email) VALUES ('".$login."', '".$password."', '".$email."')") === TRUE) {
-//  $_SESSION['message'] = 'Done'; }
- // else {
-// $_SESSION['message'] = 'error'; 
- // }
  mysqli_close($mysqli);
 }
 }
