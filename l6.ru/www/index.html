@@ -1,0 +1,38 @@
+<?php
+include("php/sessionstart.php");
+?>
+<html>
+<head>	
+		<title> my site </title>		
+		<link rel="stylesheet" href="css/style.css" media="all">		
+</head>
+<body>	
+    <header>
+    <sheader>Header example</sheader>
+  </header>
+  <section>
+   <ssection>Section example. No headline.</ssection>
+  </section>
+  <nav><a href="1.html"target="_blank"><snav>navigation link</snav></a>
+  </nav>
+   <aside>
+   <saside>aside text</saside><br>
+   <br><a href="javascript:alert('Hello World!');"><saside>Hello</saside></a>
+  </aside>
+  <article>
+    <sarticle>Article example</sarticle>
+	<p>content</p>
+  </article>  
+  </section>
+  <form id="input" action="php/send.php" method="get">
+  <br><input type="submit" name="submit" value="OK" /><br>
+  </form>
+		<?php 		
+		echo $_SESSION['message'];
+		$_SESSION['message'] = ''; 
+		?>
+  <footer>
+    <a href="#top"><sfooter>Go to top</sfooter></a>
+  </footer>  
+</body>
+</html>
