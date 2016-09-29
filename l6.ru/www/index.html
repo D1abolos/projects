@@ -1,8 +1,9 @@
 <?php
-	include("php/sessionstart.php");
-	
-	include('php/template.html');
-	
-	echo $_SESSION['message'];
-	$_SESSION['message'] = ''; 
+	$include("template.html");
+	$template = new Template();
+	$a = array();
+	$a["adin"] = "first";
+	$a["dva"] = "second";
+	$template->set("name", $a);
+	$template->show("shablon");
 ?> 

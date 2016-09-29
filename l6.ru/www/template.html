@@ -1,0 +1,23 @@
+<html>
+
+</html>
+<?php
+class Template {
+
+  private $data = array();
+  private $tpl;
+
+  public function __construct($tpl) {
+	$this->tpl = $tpl;
+}
+  public function set($name, $value){
+    $this->data[$name] = $value;
+  }
+
+
+  public function show($template){
+    $template = $this->tpl.$template.".tpl";
+	include ($template);
+  }
+}
+?>
